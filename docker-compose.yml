@@ -4,11 +4,11 @@ services:
   # PostgreSQL - Primary Database
   postgres:
     image: postgres:15-alpine
-    container_name: fabacus-postgres
+    container_name: zephyr-postgres
     environment:
-      POSTGRES_DB: fabacus
-      POSTGRES_USER: fabacus
-      POSTGRES_PASSWORD: fabacus_password
+      POSTGRES_DB: zephyr
+      POSTGRES_USER: zephyr
+      POSTGRES_PASSWORD: zephyr_password
       POSTGRES_INITDB_ARGS: "--encoding=UTF-8 --lc-collate=C --lc-ctype=C"
     ports:
       - "5432:5432"
@@ -16,7 +16,7 @@ services:
       - postgres_data:/var/lib/postgresql/data
       - ./database/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U fabacus -d fabacus"]
+      test: ["CMD-SHELL", "pg_isready -U zephyr -d zephyr"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -25,7 +25,7 @@ services:
   # Redis - Cache and Message Queue
   redis:
     image: redis:7-alpine
-    container_name: fabacus-redis
+    container_name: zephyr-redis
     ports:
       - "6379:6379"
     volumes:
@@ -41,13 +41,13 @@ services:
   # RabbitMQ - Message Queue (Alternative to Redis Streams)
   rabbitmq:
     image: rabbitmq:3-management-alpine
-    container_name: fabacus-rabbitmq
+    container_name: zephyr-rabbitmq
     ports:
       - "5672:5672"
       - "15672:15672"
     environment:
-      RABBITMQ_DEFAULT_USER: fabacus
-      RABBITMQ_DEFAULT_PASS: fabacus_password
+      RABBITMQ_DEFAULT_USER: zephyr
+      RABBITMQ_DEFAULT_PASS: zephyr_password
     volumes:
       - rabbitmq_data:/var/lib/rabbitmq
     healthcheck:
@@ -60,16 +60,16 @@ services:
   # Main Application Service
   app:
     build: .
-    container_name: fabacus-app
+    container_name: zephyr-app
     ports:
       - "3000:3000"
     environment:
       - NODE_ENV=production
       - PORT=3000
-      - DATABASE_URL=postgresql://fabacus:fabacus_password@postgres:5432/fabacus
+      - DATABASE_URL=postgresql://zephyr:zephyr_password@postgres:5432/zephyr
       - REDIS_HOST=redis
       - REDIS_PORT=6379
-      - RABBITMQ_URL=amqp://fabacus:fabacus_password@rabbitmq:5672
+      - RABBITMQ_URL=amqp://zephyr:zephyr_password@rabbitmq:5672
       - MAX_HOLDS_PER_USER=5
       - DEFAULT_HOLD_DURATION=60
     depends_on:
@@ -89,13 +89,13 @@ services:
   # Message Queue Worker
   worker:
     build: .
-    container_name: fabacus-worker
+    container_name: zephyr-worker
     environment:
       - NODE_ENV=production
-      - DATABASE_URL=postgresql://fabacus:fabacus_password@postgres:5432/fabacus
+      - DATABASE_URL=postgresql://zephyr:zephyr_password@postgres:5432/zephyr
       - REDIS_HOST=redis
       - REDIS_PORT=6379
-      - RABBITMQ_URL=amqp://fabacus:fabacus_password@rabbitmq:5672
+      - RABBITMQ_URL=amqp://zephyr:zephyr_password@rabbitmq:5672
       - WORKER_MODE=true
     depends_on:
       postgres:
@@ -110,16 +110,16 @@ services:
   # Development service with hot reload
   app-dev:
     build: .
-    container_name: fabacus-app-dev
+    container_name: zephyr-app-dev
     ports:
       - "3001:3000"
     environment:
       - NODE_ENV=development
       - PORT=3000
-      - DATABASE_URL=postgresql://fabacus:fabacus_password@postgres:5432/fabacus
+      - DATABASE_URL=postgresql://zephyr:zephyr_password@postgres:5432/zephyr
       - REDIS_HOST=redis
       - REDIS_PORT=6379
-      - RABBITMQ_URL=amqp://fabacus:fabacus_password@rabbitmq:5672
+      - RABBITMQ_URL=amqp://zephyr:zephyr_password@rabbitmq:5672
       - MAX_HOLDS_PER_USER=5
     volumes:
       - ./src:/app/src
@@ -139,7 +139,7 @@ services:
   # Nginx Load Balancer (for production scaling)
   nginx:
     image: nginx:alpine
-    container_name: fabacus-nginx
+    container_name: zephyr-nginx
     ports:
       - "80:80"
       - "443:443"
@@ -154,7 +154,7 @@ services:
   # Monitoring and Observability
   prometheus:
     image: prom/prometheus:latest
-    container_name: fabacus-prometheus
+    container_name: zephyr-prometheus
     ports:
       - "9090:9090"
     volumes:
@@ -171,7 +171,7 @@ services:
 
   grafana:
     image: grafana/grafana:latest
-    container_name: fabacus-grafana
+    container_name: zephyr-grafana
     ports:
       - "3001:3000"
     environment:
@@ -199,5 +199,5 @@ volumes:
 
 networks:
   default:
-    name: fabacus-network
+    name: zephyr-network
     driver: bridge

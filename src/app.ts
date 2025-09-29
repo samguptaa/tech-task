@@ -51,7 +51,7 @@ app.get('/health', (req: Request, res: Response) => {
     res.status(200).json({
         status: 'healthy',
         timestamp: new Date().toISOString(),
-        service: 'fabacus-reservation-service'
+        service: 'zephyr-reservation-service'
     });
 });
 

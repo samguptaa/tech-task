@@ -1,5 +1,5 @@
 /**
- * Core type definitions for the Fabacus Reservation Service
+ * Core type definitions for the zephyr Reservation Service
  */
 
 import { Request, Response, NextFunction } from 'express';

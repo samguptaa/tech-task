@@ -1,4 +1,4 @@
-# Fabacus Reservation Service
+# zephyr Reservation Service
 
 A high-performance TypeScript Node.js backend service for managing event seat reservations using Redis and Docker.
 
@@ -70,7 +70,7 @@ user_holds:{userId}:{eventId} -> Set of seats held by user
 1. **Clone and setup**:
    ```bash
    git clone <repository-url>
-   cd fabacus
+   cd zephyr
    ```
 
 2. **Start services**:

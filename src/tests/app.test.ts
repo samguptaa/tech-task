@@ -18,7 +18,7 @@ jest.mock('../services/redisService.js', () => ({
     }
 }));
 
-describe('Fabacus Reservation Service', () => {
+describe('zephyr Reservation Service', () => {
     beforeEach(() => {
         jest.clearAllMocks();
     });
@@ -30,7 +30,7 @@ describe('Fabacus Reservation Service', () => {
                 .expect(200);
 
             expect(response.body).toHaveProperty('status', 'healthy');
-            expect(response.body).toHaveProperty('service', 'fabacus-reservation-service');
+            expect(response.body).toHaveProperty('service', 'zephyr-reservation-service');
             expect(response.body).toHaveProperty('timestamp');
         });
     });

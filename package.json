@@ -1,5 +1,5 @@
 {
-    "name": "fabacus-reservation-service",
+    "name": "zephyr-reservation-service",
     "version": "1.0.0",
     "description": "Event seat reservation service using Node.js, Redis, and Docker",
     "type": "module",
@@ -20,7 +20,7 @@
         "redis",
         "nodejs"
     ],
-    "author": "Fabacus Team",
+    "author": "zephyr Team",
     "license": "MIT",
     "dependencies": {
         "cors": "^2.8.5",

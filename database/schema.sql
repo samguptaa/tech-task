@@ -1,4 +1,4 @@
--- Enhanced PostgreSQL Schema for Fabacus Reservation Service
+-- Enhanced PostgreSQL Schema for zephyr Reservation Service
 -- Provides ACID compliance, complex queries, and audit trail
 
 -- Enable UUID extension
@@ -192,6 +192,6 @@ INSERT INTO events (id, name, description, total_seats) VALUES
 ('550e8400-e29b-41d4-a716-446655440001', 'Tech Conference 2024', 'Technology and innovation conference', 200);
 
 -- Grant permissions (adjust as needed for your setup)
--- GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO fabacus_user;
--- GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO fabacus_user;
--- GRANT EXECUTE ON ALL FUNCTIONS IN SCHEMA public TO fabacus_user;
+-- GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO zephyr_user;
+-- GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO zephyr_user;
+-- GRANT EXECUTE ON ALL FUNCTIONS IN SCHEMA public TO zephyr_user;

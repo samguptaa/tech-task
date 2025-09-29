@@ -1,8 +1,8 @@
-# Fabacus Reservation Service - System Overview
+# zephyr Reservation Service - System Overview
 
 ## Executive Summary
 
-The Fabacus Reservation Service is a high-performance, production-ready TypeScript Node.js backend service designed to manage event seat reservations at scale. Built with modern architecture patterns, it provides real-time seat management, reliable data persistence, and horizontal scalability.
+The zephyr Reservation Service is a high-performance, production-ready TypeScript Node.js backend service designed to manage event seat reservations at scale. Built with modern architecture patterns, it provides real-time seat management, reliable data persistence, and horizontal scalability.
 
 ## System Architecture
 
@@ -451,7 +451,7 @@ const reservation = await fetch(`/api/seats/${eventId}/1/reserve`, {
 
 ## Conclusion
 
-The Fabacus Reservation Service provides a robust, scalable, and production-ready solution for event seat reservations. With its modern architecture, comprehensive feature set, and extensive testing, it meets all original requirements while providing significant enhancements for real-world usage.
+The zephyr Reservation Service provides a robust, scalable, and production-ready solution for event seat reservations. With its modern architecture, comprehensive feature set, and extensive testing, it meets all original requirements while providing significant enhancements for real-world usage.
 
 **Key Strengths**:
 - ✅ **Complete Requirements Coverage**: All core and bonus features

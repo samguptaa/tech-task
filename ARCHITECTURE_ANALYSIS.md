@@ -357,8 +357,8 @@ export class WebSocketService {
 postgres:
   image: postgres:15
   environment:
-    POSTGRES_DB: fabacus
-    POSTGRES_USER: fabacus
+    POSTGRES_DB: zephyr
+    POSTGRES_USER: zephyr
     POSTGRES_PASSWORD: password
   volumes:
     - postgres_data:/var/lib/postgresql/data
